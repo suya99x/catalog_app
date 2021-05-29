@@ -21,18 +21,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
+    //to load animation of progess circular && to fix error listview
+    await Future.delayed((Duration(seconds: 2)));
      final catalogJson= await rootBundle.loadString("assets/files/catalog.json");
      //print(catalogjson); prints all json data use breakpoint to check(leftclick on line no) {...}
      // we cant load object directly so we decode to get object in dynamic format .ie key,value in map
      final decodeData=jsonDecode(catalogJson);
      //so no we need to map
     var productData=decodeData["products"];
-    print(productData);
+    //item to convert into list
+    //  List<Item> list = List.from(productData)
+    //      .map<Item>((item) => Item.fromMap(item))
+    //      .toList(); or
+     CatalogModel.items = List.from(productData)
+         .map<Item>((item) => Item.fromMap(item))
+         .toList();
+     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final itemlist=List.generate(20, (index) => CatalogModel.items[0]);
+   // final itemlist=List.generate(20, (index) => CatalogModel.items[0]);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -41,15 +50,17 @@ class _HomePageState extends State<HomePage> {
       //body: Text(context.runtimeType.toString()),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
+        //to fix null error in getter in lisstview
+        child: (CatalogModel.items!=null && CatalogModel.items.isNotEmpty)
+            ? ListView.builder(
           //or CatalogModel.items.length,
-          itemCount: itemlist.length,
-          itemBuilder: (context, index){
-            return ItemWidget(
-                item: itemlist[index]);
-          },
-
-        ),
+          itemCount: CatalogModel.items.length,
+          itemBuilder: (context, index) => ItemWidget(
+                item: CatalogModel.items[index]),
+        )
+         :Center(//if item not loaded in list view
+          child: CircularProgressIndicator(),
+        )
       ),
       drawer: MyDrawer(),
     );
