@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:catalog_app/widgets/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -10,6 +11,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Catalog App'),
+      ),
+      body: Text('welcome to home page'),
+      drawer: MyDrawer(),
+    );
   }
 }
+
+
+
