@@ -12,7 +12,7 @@ class CatalogImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
       image,
-    ).box.rounded.p8.color(MyTheme.creamColor).make().p16().w40(context);
+    ).box.rounded.p8.color(context.canvasColor).make().p16().w40(context);
     //p16 inner padding .p16() row padding
     //w40 diffrent image have differnt resolution to fix we use width
   }

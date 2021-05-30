@@ -48,7 +48,7 @@ class CatalogItem extends StatelessWidget {
             child: Column(
           children: [
             //sadai text paxi x12 or lg
-            catalogreq.name.text.lg.color(MyTheme.darkBluishColor).bold.make(),
+            catalogreq.name.text.lg.color(context.accentColor).bold.make(),
             //caption style light color
             catalogreq.desc.text.textStyle(context.captionStyle).make(),
             SizedBox(
@@ -67,13 +67,13 @@ class CatalogItem extends StatelessWidget {
                   style: ButtonStyle(
                       //all matlab pressed or not pressed both
                       backgroundColor: MaterialStateProperty.all(
-                        MyTheme.darkBluishColor,
+                        context.theme.buttonColor,
                       ),
                       //button rounded corner
                       shape: MaterialStateProperty.all(
                         StadiumBorder(),
                       )),
-                  child: "Buy".text.make(),
+                  child: "Add to Cart".text.make(),
                 )
               ],
             ).pOnly(right: 8.0)
@@ -82,6 +82,6 @@ class CatalogItem extends StatelessWidget {
       ],
     )
         //py padding 16 rounded border of sqaure if we remove square very big hunxa image
-        ).white.rounded.square(130).make().py16();
+        ).color(context.cardColor).rounded.square(130).make().py16();
   }
 }

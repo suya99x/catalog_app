@@ -1,10 +1,14 @@
 import 'package:catalog_app/modals/catalog.dart';
+import 'package:catalog_app/widgets/Themes.dart';
 import 'package:catalog_app/widgets/home_widgets/Catalog_header.dart';
 import 'package:catalog_app/widgets/home_widgets/Catalog_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/services.dart';
+
+import '../MyRoutes.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -41,6 +45,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //final itemlist=List.generate(20, (index) => CatalogModel.items[0]);
     return Scaffold(
+      //if not using velocityx theme.of(context).cardcolor,
+      backgroundColor: context.canvasColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+        child: Icon(CupertinoIcons.cart,
+        color: Colors.white,
+        ),
+        backgroundColor: context.theme.buttonColor,
+        ),
       body: SafeArea(
         //mathi ra talako like battery nav button
         child: Container(
@@ -50,8 +63,10 @@ class _HomePageState extends State<HomePage> {
               CatalogHeader(),
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                 CatalogList().py(16).expand()
-              else
-                Center(child: CircularProgressIndicator())
+               else
+               CircularProgressIndicator().centered().expand(),
+               //Expanded(child: Center(child: CircularProgressIndicator()))
+                
             ],
           ).px(16),
         ),

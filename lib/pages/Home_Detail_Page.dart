@@ -13,10 +13,12 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: MyTheme.creamColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
                 //price ra buy button ma space
                 alignment: MainAxisAlignment.spaceBetween,
@@ -30,14 +32,14 @@ class HomeDetailPage extends StatelessWidget {
                     style: ButtonStyle(
                         //all matlab pressed or not pressed both
                         backgroundColor: MaterialStateProperty.all(
-                          MyTheme.darkBluishColor,
+                          context.theme.buttonColor,
                         ),
                         //button rounded corner
                         shape: MaterialStateProperty.all(
                           StadiumBorder(),
                         )),
-                    child: "Buy".text.make(),
-                  ).wh(100,50)
+                    child: "Add to cart".text.make(),
+                  ).wh(120,50)
                   //w means with h mean height 
                   //can also use w(context)
                 ],
@@ -62,15 +64,18 @@ class HomeDetailPage extends StatelessWidget {
 
               child: Container(
                 //containter for description buy and other stuffs
-                color: Colors.white,
+                color: context.cardColor,
                 width: context.screenWidth,//half ayera fullscreen use garna
                 child: Column(
                   children: [
                     catalog.name.text.xl4
-                        .color(MyTheme.darkBluishColor)
+                        .color(context.accentColor)
                         .bold
                         .make(),
                     catalog.desc.text.textStyle(context.captionStyle).xl.make(),
+                    10.heightBox,
+                    "Rustling before and then name and with the is. The of flown implore the thinking and moment, to name this."
+                    .text.textStyle(context.captionStyle).color(context.accentColor).make().p(16),
                   ],
                 ).py64(),//py64 to make sure content doesnot get cut due to arc
               ),
