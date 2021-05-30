@@ -1,1 +1,6 @@
-{}
+{
+    "dart.sdkPaths": [
+        "I:\\android\\flutter\\bin\\cache\\dart-sdk"
+    ],
+    "dart.flutterSdkPath": "I:\\android\\flutter_windows\\flutter"
+}
