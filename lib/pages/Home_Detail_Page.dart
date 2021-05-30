@@ -1,4 +1,5 @@
 import 'package:catalog_app/modals/catalog.dart';
+import 'package:catalog_app/widgets/home_widgets/add_to_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -19,30 +20,18 @@ class HomeDetailPage extends StatelessWidget {
       bottomNavigationBar: Container(
         color: context.cardColor,
         child: ButtonBar(
-                //price ra buy button ma space
-                alignment: MainAxisAlignment.spaceBetween,
-                //right batra matra padding
-                //buttonPadding: Vx.mOnly(right: 16),
-                buttonPadding: EdgeInsets.zero,
-                children: [
-                  "\$${catalog.price}".text.bold.xl4.purple400.make(),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        //all matlab pressed or not pressed both
-                        backgroundColor: MaterialStateProperty.all(
-                          context.theme.buttonColor,
-                        ),
-                        //button rounded corner
-                        shape: MaterialStateProperty.all(
-                          StadiumBorder(),
-                        )),
-                    child: "Add to cart".text.make(),
-                  ).wh(120,50)
-                  //w means with h mean height 
-                  //can also use w(context)
-                ],
-              ).p(32),
+          //price ra buy button ma space
+          alignment: MainAxisAlignment.spaceBetween,
+          //right batra matra padding
+          //buttonPadding: Vx.mOnly(right: 16),
+          buttonPadding: EdgeInsets.zero,
+          children: [
+            "\$${catalog.price}".text.bold.xl4.red800.make(),
+            AddToCart(
+              catalog: catalog,
+            ).wh(120, 50)
+          ],
+        ).p32(),
       ),
       body: SafeArea(
         bottom: false, // for iphone tala ko ignore garna
@@ -64,7 +53,7 @@ class HomeDetailPage extends StatelessWidget {
               child: Container(
                 //containter for description buy and other stuffs
                 color: context.cardColor,
-                width: context.screenWidth,//half ayera fullscreen use garna
+                width: context.screenWidth, //half ayera fullscreen use garna
                 child: Column(
                   children: [
                     catalog.name.text.xl4
@@ -74,9 +63,13 @@ class HomeDetailPage extends StatelessWidget {
                     catalog.desc.text.textStyle(context.captionStyle).xl.make(),
                     10.heightBox,
                     "Rustling before and then name and with the is. The of flown implore the thinking and moment, to name this."
-                    .text.textStyle(context.captionStyle).color(context.accentColor).make().p(16),
+                        .text
+                        .textStyle(context.captionStyle)
+                        .color(context.accentColor)
+                        .make()
+                        .p(16),
                   ],
-                ).py64(),//py64 to make sure content doesnot get cut due to arc
+                ).py64(), //py64 to make sure content doesnot get cut due to arc
               ),
             ))
           ],
