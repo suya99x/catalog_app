@@ -3,10 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:catalog_app/MyRoutes.dart';
 import 'package:catalog_app/pages/Login_Page.dart';
 import 'package:catalog_app/widgets/Themes.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'core/store.dart';
 import 'pages/HomePage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    VxState(
+      store: MyStore(),
+      interceptors: [],
+      child: MyApp()
+      )
+      );
 }
 
 class MyApp extends StatelessWidget {

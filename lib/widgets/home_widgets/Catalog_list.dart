@@ -1,9 +1,9 @@
-import 'package:catalog_app/modals/catalog.dart';
-import 'package:catalog_app/pages/Home_Detail_Page.dart';
-import 'package:catalog_app/widgets/Themes.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:catalog_app/modals/catalog.dart';
+import 'package:catalog_app/pages/Home_Detail_Page.dart';
 import 'Catalog_image.dart';
+import 'add_to_cart.dart';
 
 class CatalogList extends StatelessWidget {
   @override
@@ -12,7 +12,8 @@ class CatalogList extends StatelessWidget {
       shrinkWrap: true, //mathi exapnded list lai fit garna
       itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
-        final catalog1 = CatalogModel.items[index];
+        final catalog1 = CatalogModel.items[index]; //same thing
+        //final catalog1 = CatalogModel.getByPosition(index);
         return InkWell(
             onTap: () => Navigator.push(
                 context,
@@ -42,8 +43,8 @@ class CatalogItem extends StatelessWidget {
         //hero for animation key is used to link both pages should have same key
         //hero tag always string
         Hero(
-          tag: Key(catalogreq.id.toString()),
-          child: CatalogImage(image: catalogreq.image)),
+            tag: Key(catalogreq.id.toString()),
+            child: CatalogImage(image: catalogreq.image)),
         Expanded(
             child: Column(
           children: [
@@ -62,19 +63,7 @@ class CatalogItem extends StatelessWidget {
               buttonPadding: EdgeInsets.zero,
               children: [
                 "\$${catalogreq.price}".text.bold.xl.make(),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      //all matlab pressed or not pressed both
-                      backgroundColor: MaterialStateProperty.all(
-                        context.theme.buttonColor,
-                      ),
-                      //button rounded corner
-                      shape: MaterialStateProperty.all(
-                        StadiumBorder(),
-                      )),
-                  child: "Add to Cart".text.make(),
-                )
+                AddToCart(catalog: catalogreq)
               ],
             ).pOnly(right: 8.0)
           ],

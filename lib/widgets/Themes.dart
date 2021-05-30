@@ -37,7 +37,9 @@ class MyTheme {
 //to show icon which is white due to removal of background
 //back button white icontheme white
         iconTheme: IconThemeData(color: Colors.white),
-        textTheme: Theme.of(context).textTheme,
+        textTheme: Theme.of(context).textTheme.copyWith(
+            headline6:
+                context.textTheme.headline6.copyWith(color: Colors.white)),
       ));
 
   //Colors
