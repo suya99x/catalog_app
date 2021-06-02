@@ -9,44 +9,40 @@ class CatalogList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return !context.isMobile //checking if web or mobile for view
-    ? GridView.builder(
-      gridDelegate:
-       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      shrinkWrap: true, //mathi exapnded list lai fit garna
-      itemCount: CatalogModel.items.length,
-      itemBuilder: (context, index) {
-        final catalog1 = CatalogModel.items[index]; //same thing
-        //final catalog1 = CatalogModel.getByPosition(index);
-        return InkWell(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => HomeDetailPage(
-                          catalog: catalog1,
-                        )
-                        )
-                        ),
-            child: CatalogItem(catalogreq: catalog1));
-      },
-    )
-    : ListView.builder(
-      shrinkWrap: true, //mathi exapnded list lai fit garna
-      itemCount: CatalogModel.items.length,
-      itemBuilder: (context, index) {
-        final catalog1 = CatalogModel.items[index]; //same thing
-        //final catalog1 = CatalogModel.getByPosition(index);
-        return InkWell(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => HomeDetailPage(
-                          catalog: catalog1,
-                        )
-                        )
-                        ),
-            child: CatalogItem(catalogreq: catalog1));
-      },
-    )
+        ? GridView.builder(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            shrinkWrap: true, //mathi exapnded list lai fit garna
+            itemCount: CatalogModel.items.length,
+            itemBuilder: (context, index) {
+              final catalog1 = CatalogModel.items[index]; //same thing
+              //final catalog1 = CatalogModel.getByPosition(index);
+              return InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomeDetailPage(
+                                catalog: catalog1,
+                              ))),
+                  child: CatalogItem(catalogreq: catalog1));
+            },
+          )
+        : ListView.builder(
+            shrinkWrap: true, //mathi exapnded list lai fit garna
+            itemCount: CatalogModel.items.length,
+            itemBuilder: (context, index) {
+              final catalog1 = CatalogModel.items[index]; //same thing
+              //final catalog1 = CatalogModel.getByPosition(index);
+              return InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomeDetailPage(
+                                catalog: catalog1,
+                              ))),
+                  child: CatalogItem(catalogreq: catalog1));
+            },
+          );
   }
 }
 
